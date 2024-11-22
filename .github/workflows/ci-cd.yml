@@ -44,11 +44,10 @@ jobs:
   #     - name: Build Docker image
   #       run: docker build -t lab-api .
 
-  # deploy:
-  #   runs-on: ubuntu-latest
-  #   needs: docker-build
-  #   steps:
-  #     - name: Deploy to Vercel
-  #       run: |
-  #         npm i -g vercel
-  #         vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to Vercel
+        run: |
+          npm i -g vercel
+          vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
