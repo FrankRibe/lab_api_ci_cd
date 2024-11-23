@@ -6,21 +6,6 @@ on:
       - main
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.10'
-
-      - name: Install dependencies
-        run: |
-          pwd
-          ls
   test:
     runs-on: ubuntu-latest
     needs: build
@@ -34,23 +19,13 @@ jobs:
       - name: Run tests
         run: python -m unittest discover -s .
 
-  # docker-build:
-  #   runs-on: ubuntu-latest
-  #   needs: test
-  #   steps:
-  #     - name: Checkout code
-  #       uses: actions/checkout@v3
-
-  #     - name: Build Docker image
-  #       run: docker build -t lab-api .
-
   deploy:
     runs-on: ubuntu-latest
     needs: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-        
+
       - name: Deploy to Vercel
         run: |
           npm i -g vercel
